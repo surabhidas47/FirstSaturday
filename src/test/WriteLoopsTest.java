@@ -1,4 +1,4 @@
-package src.test.java;
+package src.test;
 
 import static org.junit.Assert.*;
 import org.junit.After;
