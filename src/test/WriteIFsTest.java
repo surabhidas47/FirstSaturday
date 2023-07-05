@@ -1,4 +1,3 @@
-package src.test;
 
 import org.junit.After;
 import org.junit.Before;
