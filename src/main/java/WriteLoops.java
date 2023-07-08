@@ -120,11 +120,14 @@ public class WriteLoops {
         // statement inside the loop that checks the
         // loop index counter and if it’s greater than 51,
         // prints “Hello Zipcode” instead of the statement w = w + 1;
-
-                // calling
+        for (int i = 5; i <= 105; i++) {
+            if (i > 51) {
+                System.out.print("Hello Zipcode");
+            } else {
                 w = w + 1;
-            // each time through the inner loop
-        
+            }
+
+        }
         return w;
     }
 
@@ -157,7 +160,7 @@ public class WriteLoops {
     // After the loop is done, print “Honey, I’m Home!”
     public int driveHome(){
         int w = 0;
-        while(!gpsCurrentLocation().equals("Home")) {
+        while(!gpsCurrentLocation().equalsIgnoreCase("Home")) {
             driveSomeMore();
             //have to make sure this is ins
             w = w + 1;
@@ -177,19 +180,22 @@ public class WriteLoops {
     // is less than “highestScore” and if it is, adds “currentScore” to
     // "runningScore"
     // and then sets “currentScore” to “gameNextScore()”
-    public int checkGameScore() {
+    public boolean checkGameScore() {
         int w = 0;
         int highestScore = 236;
         int currentScore = gameNextScore();
         int runningScore = 0;
 
         // do your while loop here
- 
+        while (runningScore<highestScore) {
+            runningScore+=currentScore;
+            gameNextScore();
             // calling
             w = w + 1;
             // each time through the inner loop
-        
-        return w; // >= 3;
+        }
+
+        return w>= 3; // >= 3;
     }
 
     // Rewrite the previous WHILE loop as a DO..WHILE loop.
@@ -201,9 +207,14 @@ public class WriteLoops {
         int runningScore = 0;
 
         // do your while loop here
+        do {
+            //because current score is added to running score before checking the condition
+            runningScore+= currentScore;
+
+        } while (runningScore<highestScore);
 
             // calling
-            w = w + 1;
+           w = w + 1;
             // each time through the inner loop
 
         return w >= 3;
@@ -215,13 +226,26 @@ public class WriteLoops {
     // and also calls “tryServerRestart()”
     public int checkServerStatus() {
         int w = 0;
+
         String adminPhoneNumber = "+1 202 456 1111";
-        
+
+        while(serverIsRunning()){
+
+
+            waitFor(5);
+
+            w+=1;
+        }
+
+        if(!serverIsRunning()){
+            sendEmergencyText("Help!",adminPhoneNumber);
+            tryServerRestart("Help!",adminPhoneNumber);
+
+        }
 
         // calling
-        w = w + 1;
+        //w = w + 1;
         // each time through the inner loop
-        
         return w;
     }
 
